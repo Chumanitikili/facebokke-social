@@ -23,6 +23,7 @@ interface SignInForm {
 const Auth = () => {
   const { user, signUp, signIn } = useAuth();
   const [loading, setLoading] = useState(false);
+  const [demoLoading, setDemoLoading] = useState(false);
 
   const signUpForm = useForm<SignUpForm>();
   const signInForm = useForm<SignInForm>();
@@ -38,7 +39,7 @@ const Auth = () => {
     if (error) {
       toast.error(error.message);
     } else {
-      toast.success('Registrasie suksesvol! Tjek jou e-pos vir bevestiging.');
+      toast.success('Registration successful! Check your email for confirmation.');
     }
     setLoading(false);
   };
@@ -50,9 +51,38 @@ const Auth = () => {
     if (error) {
       toast.error(error.message);
     } else {
-      toast.success('Welkom terug by FACEBOKKE!');
+      toast.success('Welcome back to FACEBOKKE!');
     }
     setLoading(false);
+  };
+
+  const handleDemoLogin = async () => {
+    setDemoLoading(true);
+    const demoEmail = 'demo@facebokke.co.za';
+    const demoPassword = 'demo123456';
+    
+    // Try to sign in with demo account
+    const { error: signInError } = await signIn(demoEmail, demoPassword);
+    
+    if (signInError) {
+      // If demo account doesn't exist, create it
+      const { error: signUpError } = await signUp(demoEmail, demoPassword, 'Demo User');
+      
+      if (signUpError) {
+        toast.error('Could not create demo account');
+      } else {
+        // After creating, try to sign in again
+        const { error: finalSignInError } = await signIn(demoEmail, demoPassword);
+        if (finalSignInError) {
+          toast.error('Demo account created but could not sign in');
+        } else {
+          toast.success('Welcome to FACEBOKKE Demo!');
+        }
+      }
+    } else {
+      toast.success('Welcome back to FACEBOKKE Demo!');
+    }
+    setDemoLoading(false);
   };
 
   return (
@@ -104,8 +134,27 @@ const Auth = () => {
                     )}
                   />
                   
-                  <Button type="submit" className="w-full" disabled={loading}>
+                  <Button type="submit" className="w-full" disabled={loading || demoLoading}>
                     {loading ? 'Signing in...' : 'Sign In'}
+                  </Button>
+                  
+                  <div className="relative my-4">
+                    <div className="absolute inset-0 flex items-center">
+                      <span className="w-full border-t border-border" />
+                    </div>
+                    <div className="relative flex justify-center text-xs uppercase">
+                      <span className="bg-background px-2 text-muted-foreground">Or</span>
+                    </div>
+                  </div>
+                  
+                  <Button 
+                    type="button" 
+                    variant="outline" 
+                    className="w-full" 
+                    onClick={handleDemoLogin}
+                    disabled={loading || demoLoading}
+                  >
+                    {demoLoading ? 'Loading Demo...' : 'Try Demo Account'}
                   </Button>
                 </form>
               </Form>
@@ -162,8 +211,27 @@ const Auth = () => {
                     )}
                   />
                   
-                  <Button type="submit" className="w-full" disabled={loading}>
+                  <Button type="submit" className="w-full" disabled={loading || demoLoading}>
                     {loading ? 'Signing up...' : 'Sign Up'}
+                  </Button>
+                  
+                  <div className="relative my-4">
+                    <div className="absolute inset-0 flex items-center">
+                      <span className="w-full border-t border-border" />
+                    </div>
+                    <div className="relative flex justify-center text-xs uppercase">
+                      <span className="bg-background px-2 text-muted-foreground">Or</span>
+                    </div>
+                  </div>
+                  
+                  <Button 
+                    type="button" 
+                    variant="outline" 
+                    className="w-full" 
+                    onClick={handleDemoLogin}
+                    disabled={loading || demoLoading}
+                  >
+                    {demoLoading ? 'Loading Demo...' : 'Try Demo Account'}
                   </Button>
                 </form>
               </Form>
