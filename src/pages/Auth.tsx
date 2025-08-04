@@ -58,7 +58,7 @@ const Auth = () => {
 
   const handleDemoLogin = async () => {
     setDemoLoading(true);
-    const demoEmail = 'demo@facebokke.co.za';
+    const demoEmail = 'demo@example.com';
     const demoPassword = 'demo123456';
     
     // Try to sign in with demo account
