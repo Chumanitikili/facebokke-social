@@ -61,14 +61,14 @@ const Auth = () => {
         <CardHeader className="text-center">
           <CardTitle className="text-3xl font-bold text-primary">FACEBOKKE</CardTitle>
           <CardDescription>
-            Verbind met jou tjommies regoor Suid-Afrika
+            Connect with your friends across South Africa
           </CardDescription>
         </CardHeader>
         <CardContent>
           <Tabs defaultValue="signin" className="w-full">
             <TabsList className="grid w-full grid-cols-2">
-              <TabsTrigger value="signin">Teken In</TabsTrigger>
-              <TabsTrigger value="signup">Registreer</TabsTrigger>
+              <TabsTrigger value="signin">Sign In</TabsTrigger>
+              <TabsTrigger value="signup">Sign Up</TabsTrigger>
             </TabsList>
             
             <TabsContent value="signin">
@@ -77,12 +77,12 @@ const Auth = () => {
                   <FormField
                     control={signInForm.control}
                     name="email"
-                    rules={{ required: 'E-pos adres is nodig' }}
+                    rules={{ required: 'Email address is required' }}
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>E-pos Adres</FormLabel>
+                        <FormLabel>Email Address</FormLabel>
                         <FormControl>
-                          <Input placeholder="jou@email.co.za" type="email" {...field} />
+                          <Input placeholder="your@email.co.za" type="email" {...field} />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -92,12 +92,12 @@ const Auth = () => {
                   <FormField
                     control={signInForm.control}
                     name="password"
-                    rules={{ required: 'Wagwoord is nodig' }}
+                    rules={{ required: 'Password is required' }}
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>Wagwoord</FormLabel>
+                        <FormLabel>Password</FormLabel>
                         <FormControl>
-                          <Input placeholder="Jou wagwoord" type="password" {...field} />
+                          <Input placeholder="Your password" type="password" {...field} />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -105,7 +105,7 @@ const Auth = () => {
                   />
                   
                   <Button type="submit" className="w-full" disabled={loading}>
-                    {loading ? 'Besig om in te teken...' : 'Teken In'}
+                    {loading ? 'Signing in...' : 'Sign In'}
                   </Button>
                 </form>
               </Form>
@@ -117,12 +117,12 @@ const Auth = () => {
                   <FormField
                     control={signUpForm.control}
                     name="fullName"
-                    rules={{ required: 'Volle naam is nodig' }}
+                    rules={{ required: 'Full name is required' }}
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>Volle Naam</FormLabel>
+                        <FormLabel>Full Name</FormLabel>
                         <FormControl>
-                          <Input placeholder="Jou volle naam" {...field} />
+                          <Input placeholder="Your full name" {...field} />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -132,12 +132,12 @@ const Auth = () => {
                   <FormField
                     control={signUpForm.control}
                     name="email"
-                    rules={{ required: 'E-pos adres is nodig' }}
+                    rules={{ required: 'Email address is required' }}
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>E-pos Adres</FormLabel>
+                        <FormLabel>Email Address</FormLabel>
                         <FormControl>
-                          <Input placeholder="jou@email.co.za" type="email" {...field} />
+                          <Input placeholder="your@email.co.za" type="email" {...field} />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -148,14 +148,14 @@ const Auth = () => {
                     control={signUpForm.control}
                     name="password"
                     rules={{ 
-                      required: 'Wagwoord is nodig',
-                      minLength: { value: 6, message: 'Wagwoord moet minstens 6 karakters wees' }
+                      required: 'Password is required',
+                      minLength: { value: 6, message: 'Password must be at least 6 characters' }
                     }}
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>Wagwoord</FormLabel>
+                        <FormLabel>Password</FormLabel>
                         <FormControl>
-                          <Input placeholder="Kies 'n wagwoord" type="password" {...field} />
+                          <Input placeholder="Choose a password" type="password" {...field} />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -163,7 +163,7 @@ const Auth = () => {
                   />
                   
                   <Button type="submit" className="w-full" disabled={loading}>
-                    {loading ? 'Besig om te registreer...' : 'Registreer'}
+                    {loading ? 'Signing up...' : 'Sign Up'}
                   </Button>
                 </form>
               </Form>

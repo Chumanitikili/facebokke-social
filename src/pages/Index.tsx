@@ -39,7 +39,7 @@ const Index = () => {
       <div className="min-h-screen flex items-center justify-center bg-background">
         <div className="text-center">
           <h1 className="text-2xl font-bold text-primary">FACEBOKKE</h1>
-          <p className="text-muted-foreground">Besig om te laai...</p>
+          <p className="text-muted-foreground">Loading...</p>
         </div>
       </div>
     );
@@ -67,7 +67,7 @@ const Index = () => {
       .order('created_at', { ascending: false });
 
     if (error) {
-      toast.error('Kon nie posts laai nie');
+      toast.error('Could not load posts');
       console.error('Error fetching posts:', error);
     } else {
       setPosts((data as any) || []);
@@ -93,7 +93,7 @@ const Index = () => {
         .upload(fileName, imageFile);
 
       if (uploadError) {
-        toast.error('Kon nie foto oplaai nie');
+        toast.error('Could not upload image');
         setCreatePostLoading(false);
         return;
       }
@@ -115,10 +115,10 @@ const Index = () => {
       });
 
     if (error) {
-      toast.error('Kon nie post skep nie');
+      toast.error('Could not create post');
       console.error('Error creating post:', error);
     } else {
-      toast.success('Post suksesvol geskep!');
+      toast.success('Post created successfully!');
       fetchPosts(); // Refresh posts
     }
     setCreatePostLoading(false);
@@ -165,7 +165,7 @@ const Index = () => {
       });
 
     if (error) {
-      toast.error('Kon nie kommentaar pos nie');
+      toast.error('Could not post comment');
     } else {
       fetchPosts(); // Refresh posts
     }
@@ -178,11 +178,11 @@ const Index = () => {
         
         {postsLoading ? (
           <div className="text-center py-8">
-            <p className="text-muted-foreground">Besig om posts te laai...</p>
+            <p className="text-muted-foreground">Loading posts...</p>
           </div>
         ) : posts.length === 0 ? (
           <div className="text-center py-8">
-            <p className="text-muted-foreground">Geen posts nog nie. Wees die eerste om iets te pos!</p>
+            <p className="text-muted-foreground">No posts yet. Be the first to post something!</p>
           </div>
         ) : (
           posts.map((post) => (

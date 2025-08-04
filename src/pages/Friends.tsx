@@ -37,7 +37,7 @@ const Friends = () => {
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-background">
-        <p className="text-muted-foreground">Besig om te laai...</p>
+        <p className="text-muted-foreground">Loading...</p>
       </div>
     );
   }
@@ -119,9 +119,9 @@ const Friends = () => {
       });
 
     if (error) {
-      toast.error('Kon nie vriendversoek stuur nie');
+      toast.error('Could not send friend request');
     } else {
-      toast.success('Vriendversoek gestuur!');
+      toast.success('Friend request sent!');
       searchUsers(); // Refresh search results
     }
   };
@@ -133,12 +133,12 @@ const Friends = () => {
       .eq('id', friendshipId);
 
     if (error) {
-      toast.error('Kon nie vriendversoek antwoord nie');
+      toast.error('Could not respond to friend request');
     } else {
       if (status === 'accepted') {
-        toast.success('Vriendversoek aanvaar!');
+        toast.success('Friend request accepted!');
       } else {
-        toast.success('Vriendversoek geweier');
+        toast.success('Friend request declined');
       }
       fetchFriendRequests();
       fetchFriends();
@@ -160,25 +160,25 @@ const Friends = () => {
       <div className="max-w-4xl mx-auto px-4 py-8">
         <Tabs defaultValue="search" className="w-full">
           <TabsList className="grid w-full grid-cols-3">
-            <TabsTrigger value="search">Soek Vriende</TabsTrigger>
+            <TabsTrigger value="search">Find Friends</TabsTrigger>
             <TabsTrigger value="requests">
-              Versoeke ({friendRequests.length})
+              Requests ({friendRequests.length})
             </TabsTrigger>
             <TabsTrigger value="friends">
-              My Vriende ({friends.length})
+              My Friends ({friends.length})
             </TabsTrigger>
           </TabsList>
 
           <TabsContent value="search" className="space-y-4">
             <Card>
               <CardHeader>
-                <CardTitle>Soek vir Vriende</CardTitle>
+                <CardTitle>Find Friends</CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="relative">
                   <Search className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
                   <Input
-                    placeholder="Soek volgens naam of gebruikersnaam..."
+                    placeholder="Search by name or username..."
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
                     className="pl-10"
@@ -206,14 +206,14 @@ const Friends = () => {
                         onClick={() => sendFriendRequest(profile.user_id)}
                       >
                         <UserPlus className="w-4 h-4 mr-2" />
-                        Voeg by
+                        Add Friend
                       </Button>
                     </div>
                   ))}
                   
                   {searchTerm && searchResults.length === 0 && (
                     <p className="text-center text-muted-foreground py-8">
-                      Geen gebruikers gevind nie
+                      No users found
                     </p>
                   )}
                 </div>
@@ -224,12 +224,12 @@ const Friends = () => {
           <TabsContent value="requests" className="space-y-4">
             <Card>
               <CardHeader>
-                <CardTitle>Vriendversoeke</CardTitle>
+                <CardTitle>Friend Requests</CardTitle>
               </CardHeader>
               <CardContent>
                 {friendRequests.length === 0 ? (
                   <p className="text-center text-muted-foreground py-8">
-                    Geen vriendversoeke nie
+                    No friend requests
                   </p>
                 ) : (
                   <div className="space-y-3">
@@ -254,7 +254,7 @@ const Friends = () => {
                             onClick={() => respondToFriendRequest(friendship.id, 'accepted')}
                           >
                             <UserCheck className="w-4 h-4 mr-2" />
-                            Aanvaar
+                            Accept
                           </Button>
                           <Button
                             size="sm"
@@ -262,7 +262,7 @@ const Friends = () => {
                             onClick={() => respondToFriendRequest(friendship.id, 'declined')}
                           >
                             <UserX className="w-4 h-4 mr-2" />
-                            Weier
+                            Decline
                           </Button>
                         </div>
                       </div>
@@ -276,12 +276,12 @@ const Friends = () => {
           <TabsContent value="friends" className="space-y-4">
             <Card>
               <CardHeader>
-                <CardTitle>My Vriende</CardTitle>
+                <CardTitle>My Friends</CardTitle>
               </CardHeader>
               <CardContent>
                 {friends.length === 0 ? (
                   <p className="text-center text-muted-foreground py-8">
-                    Geen vriende nog nie. Begin deur mense te soek!
+                    No friends yet. Start by searching for people!
                   </p>
                 ) : (
                   <div className="space-y-3">
@@ -307,7 +307,7 @@ const Friends = () => {
                           
                           <div className="flex items-center text-sm text-muted-foreground">
                             <UserCheck className="w-4 h-4 mr-1" />
-                            Vriende
+                            Friends
                           </div>
                         </div>
                       );

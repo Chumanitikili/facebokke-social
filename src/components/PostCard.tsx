@@ -4,7 +4,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import { Heart, MessageCircle, Share } from 'lucide-react';
 import { formatDistanceToNow } from 'date-fns';
-import { af } from 'date-fns/locale';
+import { enUS } from 'date-fns/locale';
 
 interface PostCardProps {
   post: {
@@ -63,7 +63,7 @@ const PostCard: React.FC<PostCardProps> = ({ post, onLike, onComment, currentUse
             <p className="text-sm text-muted-foreground">
               {formatDistanceToNow(new Date(post.created_at), { 
                 addSuffix: true, 
-                locale: af 
+                locale: enUS 
               })}
             </p>
           </div>
@@ -133,14 +133,14 @@ const PostCard: React.FC<PostCardProps> = ({ post, onLike, onComment, currentUse
             <div className="flex space-x-2">
               <input
                 type="text"
-                placeholder="Skryf 'n kommentaar..."
+                placeholder="Write a comment..."
                 value={commentText}
                 onChange={(e) => setCommentText(e.target.value)}
                 onKeyPress={(e) => e.key === 'Enter' && handleComment()}
                 className="flex-1 px-3 py-2 border border-border rounded-lg bg-background"
               />
               <Button onClick={handleComment} size="sm">
-                Pos
+                Post
               </Button>
             </div>
           </div>

@@ -56,7 +56,7 @@ const CreatePost: React.FC<CreatePostProps> = ({ onSubmit, loading }) => {
           
           <div className="flex-1">
             <Textarea
-              placeholder="Wat gebeur nou hier, tjommie?"
+              placeholder="What's happening, buddy?"
               value={content}
               onChange={(e) => setContent(e.target.value)}
               className="border-none resize-none shadow-none focus-visible:ring-0 p-0 text-lg placeholder:text-muted-foreground"
@@ -87,7 +87,7 @@ const CreatePost: React.FC<CreatePostProps> = ({ onSubmit, loading }) => {
                   <Button variant="ghost" size="sm" asChild>
                     <span className="cursor-pointer">
                       <ImageIcon className="w-5 h-5 text-accent mr-2" />
-                      Foto
+                      Photo
                     </span>
                   </Button>
                 </label>
@@ -105,7 +105,7 @@ const CreatePost: React.FC<CreatePostProps> = ({ onSubmit, loading }) => {
                 disabled={(!content.trim() && !imageFile) || loading}
                 className="bg-primary hover:bg-primary/90"
               >
-                {loading ? 'Besig om te pos...' : 'Pos'}
+                {loading ? 'Posting...' : 'Post'}
               </Button>
             </div>
           </div>

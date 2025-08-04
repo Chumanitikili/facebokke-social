@@ -31,7 +31,7 @@ const Navbar = () => {
               }`}
             >
               <Home className="w-4 h-4 mr-2" />
-              Tuis
+              Home
             </Link>
             <Link 
               to="/friends" 
@@ -42,7 +42,7 @@ const Navbar = () => {
               }`}
             >
               <Users className="w-4 h-4 mr-2" />
-              Vriende
+              Friends
             </Link>
             <Link 
               to="/profile" 
@@ -53,7 +53,7 @@ const Navbar = () => {
               }`}
             >
               <User className="w-4 h-4 mr-2" />
-              Profiel
+              Profile
             </Link>
           </div>
 

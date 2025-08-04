@@ -33,7 +33,7 @@ const Profile = () => {
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-background">
-        <p className="text-muted-foreground">Besig om te laai...</p>
+        <p className="text-muted-foreground">Loading...</p>
       </div>
     );
   }
@@ -73,9 +73,9 @@ const Profile = () => {
       .eq('user_id', user.id);
 
     if (error) {
-      toast.error('Kon nie profiel opdateer nie');
+      toast.error('Could not update profile');
     } else {
-      toast.success('Profiel suksesvol opdateer!');
+      toast.success('Profile updated successfully!');
       setEditing(false);
       fetchProfile();
     }
@@ -84,7 +84,7 @@ const Profile = () => {
   if (!profile) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-background">
-        <p className="text-muted-foreground">Besig om profiel te laai...</p>
+        <p className="text-muted-foreground">Loading profile...</p>
       </div>
     );
   }
@@ -95,7 +95,7 @@ const Profile = () => {
         <Card>
           <CardHeader>
             <div className="flex justify-between items-center">
-              <CardTitle>My Profiel</CardTitle>
+              <CardTitle>My Profile</CardTitle>
               {!editing ? (
                 <Button
                   variant="outline"
@@ -103,7 +103,7 @@ const Profile = () => {
                   onClick={() => setEditing(true)}
                 >
                   <Edit className="w-4 h-4 mr-2" />
-                  Redigeer
+                  Edit
                 </Button>
               ) : (
                 <div className="space-x-2">
@@ -121,14 +121,14 @@ const Profile = () => {
                     }}
                   >
                     <X className="w-4 h-4 mr-2" />
-                    Kanselleer
+                    Cancel
                   </Button>
                   <Button
                     size="sm"
                     onClick={handleSave}
                   >
                     <Save className="w-4 h-4 mr-2" />
-                    Stoor
+                    Save
                   </Button>
                 </div>
               )}
@@ -149,12 +149,12 @@ const Profile = () => {
             {/* Profile Form */}
             <div className="space-y-4">
               <div>
-                <label className="text-sm font-medium">Gebruikersnaam</label>
+                <label className="text-sm font-medium">Username</label>
                 {editing ? (
                   <Input
                     value={formData.username}
                     onChange={(e) => setFormData({ ...formData, username: e.target.value })}
-                    placeholder="Jou gebruikersnaam"
+                    placeholder="Your username"
                   />
                 ) : (
                   <p className="text-foreground">{profile.username}</p>
@@ -162,12 +162,12 @@ const Profile = () => {
               </div>
 
               <div>
-                <label className="text-sm font-medium">Volle Naam</label>
+                <label className="text-sm font-medium">Full Name</label>
                 {editing ? (
                   <Input
                     value={formData.full_name}
                     onChange={(e) => setFormData({ ...formData, full_name: e.target.value })}
-                    placeholder="Jou volle naam"
+                    placeholder="Your full name"
                   />
                 ) : (
                   <p className="text-foreground">{profile.full_name}</p>
@@ -180,24 +180,24 @@ const Profile = () => {
                   <Textarea
                     value={formData.bio}
                     onChange={(e) => setFormData({ ...formData, bio: e.target.value })}
-                    placeholder="Vertel ons bietjie van jouself..."
+                    placeholder="Tell us a bit about yourself..."
                     rows={3}
                   />
                 ) : (
-                  <p className="text-foreground">{profile.bio || 'Geen bio nog nie'}</p>
+                  <p className="text-foreground">{profile.bio || 'No bio yet'}</p>
                 )}
               </div>
 
               <div>
-                <label className="text-sm font-medium">Ligging</label>
+                <label className="text-sm font-medium">Location</label>
                 {editing ? (
                   <Input
                     value={formData.location}
                     onChange={(e) => setFormData({ ...formData, location: e.target.value })}
-                    placeholder="Kaapstad, Suid-Afrika"
+                    placeholder="Cape Town, South Africa"
                   />
                 ) : (
-                  <p className="text-foreground">{profile.location || 'Geen ligging nie'}</p>
+                  <p className="text-foreground">{profile.location || 'No location'}</p>
                 )}
               </div>
             </div>
@@ -210,11 +210,11 @@ const Profile = () => {
               </div>
               <div className="text-center">
                 <p className="font-bold text-xl">0</p>
-                <p className="text-sm text-muted-foreground">Vriende</p>
+                <p className="text-sm text-muted-foreground">Friends</p>
               </div>
               <div className="text-center">
                 <p className="font-bold text-xl">0</p>
-                <p className="text-sm text-muted-foreground">Volgelinge</p>
+                <p className="text-sm text-muted-foreground">Followers</p>
               </div>
             </div>
           </CardContent>
