@@ -4,6 +4,10 @@ import { Navigate } from 'react-router-dom';
 import { supabase } from '@/integrations/supabase/client';
 import CreatePost from '@/components/CreatePost';
 import PostCard from '@/components/PostCard';
+import TrendingTopics from '@/components/TrendingTopics';
+import SuggestedFriends from '@/components/SuggestedFriends';
+import QuickActions from '@/components/QuickActions';
+import RecentActivity from '@/components/RecentActivity';
 import { toast } from 'sonner';
 
 interface Post {
@@ -175,28 +179,45 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      <div className="max-w-2xl mx-auto px-4 py-8">
-        <CreatePost onSubmit={handleCreatePost} loading={createPostLoading} />
-        
-        {postsLoading ? (
-          <div className="text-center py-8">
-            <p className="text-muted-foreground">Loading posts...</p>
+      <div className="max-w-7xl mx-auto px-4 py-8">
+        <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
+          {/* Sidebar */}
+          <div className="lg:col-span-1 space-y-6">
+            <TrendingTopics />
+            <SuggestedFriends />
           </div>
-        ) : posts.length === 0 ? (
-          <div className="text-center py-8">
-            <p className="text-muted-foreground">No posts yet. Be the first to post something!</p>
+
+          {/* Main Feed */}
+          <div className="lg:col-span-2">
+            <CreatePost onSubmit={handleCreatePost} loading={createPostLoading} />
+            
+            {postsLoading ? (
+              <div className="text-center py-8">
+                <p className="text-muted-foreground">Loading posts...</p>
+              </div>
+            ) : posts.length === 0 ? (
+              <div className="text-center py-8">
+                <p className="text-muted-foreground">No posts yet. Be the first to post something!</p>
+              </div>
+            ) : (
+              posts.map((post) => (
+                <PostCard
+                  key={post.id}
+                  post={post}
+                  onLike={handleLike}
+                  onComment={handleComment}
+                  currentUserId={user.id}
+                />
+              ))
+            )}
           </div>
-        ) : (
-          posts.map((post) => (
-            <PostCard
-              key={post.id}
-              post={post}
-              onLike={handleLike}
-              onComment={handleComment}
-              currentUserId={user.id}
-            />
-          ))
-        )}
+
+          {/* Right Sidebar */}
+          <div className="lg:col-span-1 space-y-6">
+            <QuickActions />
+            <RecentActivity />
+          </div>
+        </div>
       </div>
     </div>
   );
