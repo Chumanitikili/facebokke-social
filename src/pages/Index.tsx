@@ -34,21 +34,6 @@ const Index = () => {
   const [postsLoading, setPostsLoading] = useState(true);
   const [createPostLoading, setCreatePostLoading] = useState(false);
 
-  if (loading) {
-    return (
-      <div className="min-h-screen flex items-center justify-center bg-background">
-        <div className="text-center">
-          <h1 className="text-2xl font-bold text-primary">FACEBOKKE</h1>
-          <p className="text-muted-foreground">Loading...</p>
-        </div>
-      </div>
-    );
-  }
-
-  if (!user) {
-    return <Navigate to="/auth" replace />;
-  }
-
   const fetchPosts = async () => {
     setPostsLoading(true);
     const { data, error } = await supabase
@@ -76,8 +61,25 @@ const Index = () => {
   };
 
   useEffect(() => {
-    fetchPosts();
-  }, []);
+    if (user) {
+      fetchPosts();
+    }
+  }, [user]);
+
+  if (loading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-background">
+        <div className="text-center">
+          <h1 className="text-2xl font-bold text-primary">FACEBOKKE</h1>
+          <p className="text-muted-foreground">Loading...</p>
+        </div>
+      </div>
+    );
+  }
+
+  if (!user) {
+    return <Navigate to="/auth" replace />;
+  }
 
   const handleCreatePost = async (content: string, imageFile?: File) => {
     setCreatePostLoading(true);
