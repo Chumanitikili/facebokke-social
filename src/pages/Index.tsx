@@ -8,6 +8,10 @@ import TrendingTopics from '@/components/TrendingTopics';
 import SuggestedFriends from '@/components/SuggestedFriends';
 import QuickActions from '@/components/QuickActions';
 import RecentActivity from '@/components/RecentActivity';
+import HeroBanner from '@/components/HeroBanner';
+import FeaturedContent from '@/components/FeaturedContent';
+import VideoSection from '@/components/VideoSection';
+import LiveUpdates from '@/components/LiveUpdates';
 import { toast } from 'sonner';
 
 interface Post {
@@ -180,10 +184,17 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-background">
       <div className="max-w-7xl mx-auto px-4 py-8">
+        {/* Hero Banner */}
+        <HeroBanner />
+        
+        {/* Featured Content */}
+        <FeaturedContent />
+        
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
-          {/* Sidebar */}
+          {/* Left Sidebar */}
           <div className="lg:col-span-1 space-y-6">
             <TrendingTopics />
+            <VideoSection />
             <SuggestedFriends />
           </div>
 
@@ -214,6 +225,7 @@ const Index = () => {
 
           {/* Right Sidebar */}
           <div className="lg:col-span-1 space-y-6">
+            <LiveUpdates />
             <QuickActions />
             <RecentActivity />
           </div>
