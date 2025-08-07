@@ -1,8 +1,11 @@
-# Welcome to your Lovable project
+# Social Connect - Modern Social Media Platform
+
+A beautiful, modern social media platform built with React, TypeScript, and Supabase. Features user profiles, real-time updates, content sharing, and a responsive design with a rosy brown, pine green, and midnight green color scheme.
 
 ## Project info
 
-**URL**: https://lovable.dev/projects/ccd49c7b-17fc-424f-8711-cac79fdff3d4
+**Live Demo**: https://lovable.dev/projects/ccd49c7b-17fc-424f-8711-cac79fdff3d4
+**GitHub Repository**: [View on GitHub](https://github.com/your-username/social-connect)
 
 ## How can I edit this code?
 
